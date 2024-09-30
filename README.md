@@ -35,4 +35,3 @@ Author Information
 ------------------
 
 Marc Colburn Juniper
-# junos_mx_bridge_config
