@@ -1,0 +1,8 @@
+{% for bd in bridge_domains %}
+set bridge-domains {{ bd.name }} domain-type bridge
+set bridge-domains {{ bd.name }} vlan-id {{ bd.vlan_id }}
+{% for int in bd.interfaces %}
+set interfaces {{ int.name }} family bridge interface-mode {{ int.mode }} 
+set interfaces {{ int.name }} family bridge vlan-id-list {{ int.vlan_id_list }}
+{% endfor %}
+{% endfor %}

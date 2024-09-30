@@ -1,0 +1,12 @@
+---
+- name: Configure JUNOS MX Bridge Domains
+  junos_config:
+    lines: "{{ lookup('template', 'junos_mx_bridge_config.j2').split('\n') }}"
+    comment: Update mx_bridge 
+  when: mx_bridge_remove == False
+
+- name: Remove JUNOS MX Bridge Domains
+  junos_config:
+    lines: "{{ lookup('template', 'junos_mx_bridge_remove.j2').split('\n') }}"
+    comment: Remove mx_bridge 
+  when: mx_bridge_remove == True

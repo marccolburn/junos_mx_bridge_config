@@ -1,0 +1,6 @@
+{% for bd in bridge_domains %}
+delete bridge-domains {{ bd.name }}
+{% for int in bd.interfaces %}
+delete interfaces {{ int.name }} family bridge
+{% endfor %}
+{% endfor %}
