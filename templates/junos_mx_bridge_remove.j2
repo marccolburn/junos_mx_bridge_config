@@ -1,5 +1,9 @@
 {% for bd in bridge_domains %}
+{% if bd.routing_instance is defined %}
+delete set routing-instances {{ bd.routing_instance }} bridge-domains {{ bd.name }} 
+{% else %}
 delete bridge-domains {{ bd.name }}
+{% endif %}
 {% for int in bd.interfaces %}
 delete interfaces {{ int.name }} family bridge
 {% endfor %}

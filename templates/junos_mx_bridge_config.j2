@@ -1,6 +1,11 @@
 {% for bd in bridge_domains %}
+{% if bd.routing_instance is defined %}
+set set routing-instances {{ bd.routing_instance }} bridge-domains {{ bd.name }} domain-type bridge
+set set routing-instances {{ bd.routing_instance }} bridge-domains {{ bd.name }} vlan-id {{ bd.vlan_id }}
+{% else %}
 set bridge-domains {{ bd.name }} domain-type bridge
 set bridge-domains {{ bd.name }} vlan-id {{ bd.vlan_id }}
+{% endif %}
 {% for int in bd.interfaces %}
 set interfaces {{ int.name }} family bridge interface-mode {{ int.mode }} 
 set interfaces {{ int.name }} family bridge vlan-id-list {{ int.vlan_id_list }}
